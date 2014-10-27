@@ -23,6 +23,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var mixLemonsLabel: UILabel!
     @IBOutlet weak var mixIceCubesLabel: UILabel!
     
+    //constants
+    let lemonCost = 2
+    let iceCubecost = 1
+    
     //variables (with observers to the labesl)
     var dollars:Int = 0 {
         didSet {
@@ -41,6 +45,30 @@ class ViewController: UIViewController {
             self.iceCubesLabel.text = "\(self.iceCubes)"
         }
     }
+    
+    var purchaseLemons:Int = 0 {
+        didSet {
+            self.purchaseLemonsLabel.text = "\(self.purchaseLemons)"
+        }
+    }
+    
+    var purchaseIceCubes:Int = 0 {
+        didSet {
+            self.purchaseIceCubesLabel.text = "\(self.purchaseIceCubes)"
+        }
+    }
+
+    var mixLemons:Int = 0 {
+        didSet {
+            self.mixLemonsLabel.text = "\(self.mixLemons)"
+        }
+    }
+    
+    var mixIceCubes:Int = 0 {
+        didSet {
+            self.mixIceCubesLabel.text = "\(self.mixIceCubes)"
+        }
+    }
 
 
     override func viewDidLoad() {
@@ -56,29 +84,45 @@ class ViewController: UIViewController {
     //Purchase buttons
     
     @IBAction func purchaseMoreLemonsPressed(sender: UIButton) {
+        self.purchaseLemons++
     }
     
     @IBAction func purchaseLessLemonsPressed(sender: UIButton) {
+        if self.purchaseLemons > 0 {
+            self.purchaseLemons--
+        }
     }
     
 
     @IBAction func purchaseMoreIceCubesPressed(sender: UIButton) {
+        self.purchaseIceCubes++
     }
     
     @IBAction func purchaseLessIceCubesPressed(sender: UIButton) {
+        if self.purchaseIceCubes > 0 {
+            self.purchaseIceCubes--
+        }
     }
     
     // Mix buttons
     @IBAction func addMoreLemonsPressed(sender: UIButton) {
+        self.mixLemons++
     }
     
     @IBAction func addLessLemonsPressed(sender: UIButton) {
+        if self.mixLemons > 0 {
+            self.mixLemons--
+        }
     }
     
     @IBAction func addMoreIceCubesPressed(sender: UIButton) {
+        self.mixIceCubes++
     }
     
     @IBAction func addLessIceCubesPressed(sender: UIButton) {
+        if self.mixIceCubes > 0 {
+            self.mixIceCubes--
+        }
     }
     
     //Start day action
