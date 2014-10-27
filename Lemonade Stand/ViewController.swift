@@ -75,10 +75,10 @@ class ViewController: UIViewController {
     var numberOfCustomers = 0
     var customerPreferences: [LemonadeTaste] = []
 
-    enum LemonadeTaste {
-        case Acidic
-        case Neutral
-        case Diluted
+    enum LemonadeTaste: String {
+        case Acidic = "Acidic"
+        case Neutral = "Neutral"
+        case Diluted = "Diluted"
     }
     
     override func viewDidLoad() {
@@ -220,17 +220,21 @@ class ViewController: UIViewController {
             } else {
                 self.customerPreferences.append(LemonadeTaste.Diluted)
             }
-            
-            println("Preference for cust=\(c) is [\(self.customerPreferences[c].hashValue)]")
         }
     }
     
     private func attendCustomers() {
         var earnings = 0
-        for customerPreference in customerPreferences {
-            if customerPreference == self.lemonadeTaste {
+        for var i=0; i<self.customerPreferences.count; i++ {
+            let custPref = self.customerPreferences[i]
+            print("Customer [\(i)] likes it \(custPref.toRaw()), ")
+            
+            if custPref == self.lemonadeTaste {
                 self.dollars += self.glassPrice
                 earnings++
+                println("Paid!")
+            } else {
+                println("No match, no revenue!")
             }
         }
         self.showAlertWithtext(header: "Congrats!!", message: "You just earned \(earnings)!")
