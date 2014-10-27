@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     //constants
     let lemonCost = 2
     let iceCubeCost = 1
+    let glassPrice = 1
     
     //variables (with observers to the labesl)
     var dollars:Int = 0 {
@@ -70,7 +71,16 @@ class ViewController: UIViewController {
         }
     }
 
+    var lemonadeTaste = LemonadeTaste.Neutral
+    var numberOfCustomers = 0
+    var customerPreferences: [LemonadeTaste] = []
 
+    enum LemonadeTaste {
+        case Acidic
+        case Neutral
+        case Diluted
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -167,12 +177,65 @@ class ViewController: UIViewController {
         //use products, AKA, substract them from stock
         self.iceCubes -= self.mixIceCubes
         self.lemons -= self.mixLemons
+        
+        // do the maths, win or lose
+        //1. Create acidic ratio
+        self.determineLemonadeTaste()
+        //2. create random number of customers (1-10)
+        self.numberOfCustomers = Int(arc4random_uniform(UInt32(10))) + 1
+        //3. random taste preference per user (between 0 and 1)
+        self.setRandomPreferences()
+        //4. attend customers to earn money
+        self.attendCustomers()
+        
+        //clear vars
         self.mixLemons = 0
         self.mixIceCubes = 0
         
-        //do the maths, win or lose
     }
     
+    private func determineLemonadeTaste(){
+        let cubes = Double(self.mixIceCubes)
+        let lemons = Double(self.mixLemons)
+        var acidicRatio = lemons/cubes
+        if acidicRatio > 1 {
+            self.lemonadeTaste = LemonadeTaste.Acidic
+        } else if acidicRatio == 1 {
+            self.lemonadeTaste = LemonadeTaste.Neutral
+        } else {
+            self.lemonadeTaste = LemonadeTaste.Diluted
+        }
+    }
+    
+    private func setRandomPreferences(){
+        println("determining....[\(self.numberOfCustomers)]\n")
+        for var c=0; c < self.numberOfCustomers; c++ {
+            var pref: Double
+            pref = Double(arc4random_uniform(UInt32(10))) / 10.0
+    
+            if pref >= 0 && pref < 0.4 {
+                self.customerPreferences.append(LemonadeTaste.Acidic)
+            } else if pref >= 0.4 && pref < 0.6 {
+                self.customerPreferences.append(LemonadeTaste.Neutral)
+            } else {
+                self.customerPreferences.append(LemonadeTaste.Diluted)
+            }
+            
+            println("Preference for cust=\(c) is [\(self.customerPreferences[c].hashValue)]")
+        }
+    }
+    
+    private func attendCustomers() {
+        var earnings = 0
+        for customerPreference in customerPreferences {
+            if customerPreference == self.lemonadeTaste {
+                self.dollars += self.glassPrice
+                earnings++
+            }
+        }
+        self.showAlertWithtext(header: "Congrats!!", message: "You just earned \(earnings)!")
+        
+    }
     
 }
 
