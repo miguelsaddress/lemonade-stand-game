@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     
     //constants
     let lemonCost = 2
-    let iceCubecost = 1
+    let iceCubeCost = 1
     
     //variables (with observers to the labesl)
     var dollars:Int = 0 {
@@ -106,9 +106,9 @@ class ViewController: UIViewController {
 
     @IBAction func purchaseMoreIceCubesPressed(sender: UIButton) {
         //can i purchase that ice cube?
-        if self.dollars >= self.iceCubecost {
+        if self.dollars >= self.iceCubeCost {
             self.purchaseIceCubes++
-            self.dollars -= self.iceCubecost
+            self.dollars -= self.iceCubeCost
         }
 
     }
@@ -116,7 +116,7 @@ class ViewController: UIViewController {
     @IBAction func purchaseLessIceCubesPressed(sender: UIButton) {
         if self.purchaseIceCubes > 0 {
             self.purchaseIceCubes--
-            self.dollars += self.iceCubecost
+            self.dollars += self.iceCubeCost
         }
     }
     
