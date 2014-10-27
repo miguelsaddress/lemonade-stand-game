@@ -73,7 +73,11 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        //Setting the initial game quantities
+        self.dollars = 10
+        self.lemons = 1
+        self.iceCubes = 1
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,23 +88,35 @@ class ViewController: UIViewController {
     //Purchase buttons
     
     @IBAction func purchaseMoreLemonsPressed(sender: UIButton) {
-        self.purchaseLemons++
+        //can i purchase that lemon?
+        if self.dollars >= self.lemonCost {
+            self.purchaseLemons++
+            self.dollars -= self.lemonCost
+        }
+ 
     }
     
     @IBAction func purchaseLessLemonsPressed(sender: UIButton) {
         if self.purchaseLemons > 0 {
             self.purchaseLemons--
+            self.dollars += self.lemonCost
         }
     }
     
 
     @IBAction func purchaseMoreIceCubesPressed(sender: UIButton) {
-        self.purchaseIceCubes++
+        //can i purchase that ice cube?
+        if self.dollars >= self.iceCubecost {
+            self.purchaseIceCubes++
+            self.dollars -= self.iceCubecost
+        }
+
     }
     
     @IBAction func purchaseLessIceCubesPressed(sender: UIButton) {
         if self.purchaseIceCubes > 0 {
             self.purchaseIceCubes--
+            self.dollars += self.iceCubecost
         }
     }
     
