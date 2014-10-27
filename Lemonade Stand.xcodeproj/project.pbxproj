@@ -13,6 +13,7 @@
 		49CC6E7C19FE54670081362C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49CC6E7B19FE54670081362C /* Images.xcassets */; };
 		49CC6E7F19FE54670081362C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49CC6E7D19FE54670081362C /* LaunchScreen.xib */; };
 		49CC6E8B19FE54670081362C /* Lemonade_StandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CC6E8A19FE54670081362C /* Lemonade_StandTests.swift */; };
+		49CC6E9519FEBDA20081362C /* Enumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CC6E9419FEBDA20081362C /* Enumerations.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		49CC6E8419FE54670081362C /* Lemonade StandTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lemonade StandTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49CC6E8919FE54670081362C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49CC6E8A19FE54670081362C /* Lemonade_StandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lemonade_StandTests.swift; sourceTree = "<group>"; };
+		49CC6E9419FEBDA20081362C /* Enumerations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enumerations.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			children = (
 				49CC6E7419FE54660081362C /* AppDelegate.swift */,
 				49CC6E7619FE54660081362C /* ViewController.swift */,
+				49CC6E9419FEBDA20081362C /* Enumerations.swift */,
 				49CC6E7819FE54670081362C /* Main.storyboard */,
 				49CC6E7B19FE54670081362C /* Images.xcassets */,
 				49CC6E7D19FE54670081362C /* LaunchScreen.xib */,
@@ -214,6 +217,7 @@
 			files = (
 				49CC6E7719FE54660081362C /* ViewController.swift in Sources */,
 				49CC6E7519FE54660081362C /* AppDelegate.swift in Sources */,
+				49CC6E9519FEBDA20081362C /* Enumerations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,6 +23,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var mixLemonsLabel: UILabel!
     @IBOutlet weak var mixIceCubesLabel: UILabel!
     
+    //Weather image view
+    @IBOutlet weak var weatherImageView: UIImageView!
+    
+    
     //constants
     let lemonCost = 2
     let iceCubeCost = 1
@@ -74,13 +78,18 @@ class ViewController: UIViewController {
     var lemonadeTaste = LemonadeTaste.Neutral
     var numberOfCustomers = 0
     var customerPreferences: [LemonadeTaste] = []
-
-    enum LemonadeTaste: String {
-        case Acidic = "Acidic"
-        case Neutral = "Neutral"
-        case Diluted = "Diluted"
+    var weather: Weather? = Weather.Mild {
+        didSet {
+            if self.weather == Weather.Cold {
+                self.weatherImageView.image = UIImage(named: "Cold")
+            } else if self.weather == Weather.Warm {
+                self.weatherImageView.image = UIImage(named: "warm")
+            } else {
+                self.weatherImageView.image = UIImage(named: "Mild")
+            }
+        }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -154,7 +163,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func showAlertWithtext(header: String = "Warning", message: String, style:UIAlertControllerStyle = UIAlertControllerStyle.Alert) {
+    private func showAlertWithtext(header: String = "Warning", message: String, style:UIAlertControllerStyle = UIAlertControllerStyle.Alert) {
         var alert = UIAlertController(title: header, message: message, preferredStyle: style)
         var action = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
         alert.addAction(action)
@@ -181,17 +190,51 @@ class ViewController: UIViewController {
         // do the maths, win or lose
         //1. Create acidic ratio
         self.determineLemonadeTaste()
-        //2. create random number of customers (1-10)
-        self.numberOfCustomers = Int(arc4random_uniform(UInt32(10))) + 1
+        //2. randomize weather and create random number of customers (1-10)
+        self.determineNumberOfCustomers()
+        self.determineWeather()
+        self.adjustCustomersToWeather()
         //3. random taste preference per user (between 0 and 1)
         self.setRandomPreferences()
         //4. attend customers to earn money
         self.attendCustomers()
         
         //clear vars
+        self.resetValues()
+    }
+    
+    private func resetValues() {
         self.mixLemons = 0
         self.mixIceCubes = 0
-        
+        self.numberOfCustomers = 0
+        self.customerPreferences.removeAll(keepCapacity: true)
+    }
+    
+    private func adjustCustomersToWeather(){
+        print("The weather is [\(self.weather!)]...")
+
+        switch(self.weather!){
+        case Weather.Warm:
+            self.numberOfCustomers += 4
+            println("+4 customers! [\(self.numberOfCustomers)] ")
+        case Weather.Cold:
+            self.numberOfCustomers -= 3
+            println("-3 customers! [\(self.numberOfCustomers)] ")
+        default:
+            self.numberOfCustomers += 0
+            println("[\(self.numberOfCustomers)] +0 customers!")
+        }
+
+    }
+    
+    private func determineWeather() {
+        let random = Int( arc4random_uniform(UInt32(3)) )
+        self.weather = Weather(rawValue: random)
+    }
+    
+    private func determineNumberOfCustomers(){
+        self.numberOfCustomers = Int(arc4random_uniform(UInt32(10))) + 1
+        println("[\(self.numberOfCustomers)] possible customers")
     }
     
     private func determineLemonadeTaste(){
@@ -205,19 +248,23 @@ class ViewController: UIViewController {
         } else {
             self.lemonadeTaste = LemonadeTaste.Diluted
         }
+        println("The lemonade's taste is [\(self.lemonadeTaste)]")
     }
     
     private func setRandomPreferences(){
-        println("determining....[\(self.numberOfCustomers)]\n")
         for var c=0; c < self.numberOfCustomers; c++ {
             var pref: Double
             pref = Double(arc4random_uniform(UInt32(10))) / 10.0
-    
+            
+            // println( "pref [\(pref)]" )
             if pref >= 0 && pref < 0.4 {
+                // println("c=[\(c)] - Acidic")
                 self.customerPreferences.append(LemonadeTaste.Acidic)
             } else if pref >= 0.4 && pref < 0.6 {
+                // println("c=[\(c)] - Neutral")
                 self.customerPreferences.append(LemonadeTaste.Neutral)
             } else {
+                // println("c=[\(c)] - Diluted")
                 self.customerPreferences.append(LemonadeTaste.Diluted)
             }
         }
