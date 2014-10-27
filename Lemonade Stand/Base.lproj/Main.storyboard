@@ -210,7 +210,7 @@
                                     <rect key="frame" x="192" y="369" width="30" height="30"/>
                                 </variation>
                                 <connections>
-                                    <action selector="addLessLemonsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="si7-CQ-dDs"/>
+                                    <action selector="mixLessLemonsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wxB-a5-rly"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sam-xw-uuH">
@@ -224,7 +224,7 @@
                                     <rect key="frame" x="192" y="402" width="30" height="30"/>
                                 </variation>
                                 <connections>
-                                    <action selector="addLessIceCubesPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K1K-wZ-jWO"/>
+                                    <action selector="mixLessIceCubesPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5kh-o8-7SI"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRK-AG-qu7">
@@ -238,7 +238,7 @@
                                     <rect key="frame" x="301" y="401" width="30" height="30"/>
                                 </variation>
                                 <connections>
-                                    <action selector="addMoreIceCubesPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="L7k-pK-O9u"/>
+                                    <action selector="mixMoreIceCubesPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zlu-38-6Jo"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x8y-LF-bDt">
@@ -252,7 +252,7 @@
                                     <rect key="frame" x="301" y="368" width="30" height="30"/>
                                 </variation>
                                 <connections>
-                                    <action selector="addMoreLemonsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BGH-ea-c16"/>
+                                    <action selector="mixMoreLemonsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sD4-MB-Nkd"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wB3-FU-cNV">
@@ -415,8 +415,12 @@
                         <outlet property="lemonsLabel" destination="bh0-BW-WVt" id="F3c-qi-HUZ"/>
                         <outlet property="mixIceCubesLabel" destination="1x4-RW-0bg" id="kaX-tB-Vqj"/>
                         <outlet property="mixLemonsLabel" destination="KZk-KM-dRS" id="RxM-Dx-e82"/>
+                        <outlet property="mixLessIceCubesButton" destination="Sam-xw-uuH" id="1wg-lo-dOc"/>
+                        <outlet property="mixLessLemonsButton" destination="wmJ-ea-7Nj" id="SSr-Tg-zHf"/>
                         <outlet property="purchaseIceCubesLabel" destination="0TQ-W4-yNa" id="aUl-x6-fFn"/>
                         <outlet property="purchaseLemonsLabel" destination="cLW-VF-xBD" id="UGF-pi-Z45"/>
+                        <outlet property="purchaseLessIceCubesButton" destination="ahX-01-mll" id="Whj-Uq-4sG"/>
+                        <outlet property="purchaseLessLemonsButton" destination="0aU-DJ-3IG" id="fWF-o9-cFU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

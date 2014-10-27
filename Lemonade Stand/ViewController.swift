@@ -105,21 +105,21 @@ class ViewController: UIViewController {
     }
     
     // Mix buttons
-    @IBAction func addMoreLemonsPressed(sender: UIButton) {
+    @IBAction func mixMoreLemonsPressed(sender: UIButton) {
         self.mixLemons++
     }
     
-    @IBAction func addLessLemonsPressed(sender: UIButton) {
+    @IBAction func mixLessLemonsPressed(sender: UIButton) {
         if self.mixLemons > 0 {
             self.mixLemons--
         }
     }
     
-    @IBAction func addMoreIceCubesPressed(sender: UIButton) {
+    @IBAction func mixMoreIceCubesPressed(sender: UIButton) {
         self.mixIceCubes++
     }
     
-    @IBAction func addLessIceCubesPressed(sender: UIButton) {
+    @IBAction func mixLessIceCubesPressed(sender: UIButton) {
         if self.mixIceCubes > 0 {
             self.mixIceCubes--
         }
