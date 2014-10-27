@@ -89,34 +89,22 @@ class ViewController: UIViewController {
     
     @IBAction func purchaseMoreLemonsPressed(sender: UIButton) {
         //can i purchase that lemon?
-        if self.dollars >= self.lemonCost {
-            self.purchaseLemons++
-            self.dollars -= self.lemonCost
-        }
- 
+        self.purchaseLemons++
     }
     
     @IBAction func purchaseLessLemonsPressed(sender: UIButton) {
         if self.purchaseLemons > 0 {
             self.purchaseLemons--
-            self.dollars += self.lemonCost
         }
     }
-    
 
     @IBAction func purchaseMoreIceCubesPressed(sender: UIButton) {
-        //can i purchase that ice cube?
-        if self.dollars >= self.iceCubeCost {
-            self.purchaseIceCubes++
-            self.dollars -= self.iceCubeCost
-        }
-
+        self.purchaseIceCubes++
     }
     
     @IBAction func purchaseLessIceCubesPressed(sender: UIButton) {
         if self.purchaseIceCubes > 0 {
             self.purchaseIceCubes--
-            self.dollars += self.iceCubeCost
         }
     }
     
@@ -141,9 +129,48 @@ class ViewController: UIViewController {
         }
     }
     
-    //Start day action
+    //Purchase action
+    @IBAction func purchaseItems(sender: UIButton) {
+        //calculate total of what I wanna buy
+        var totalCost = self.purchaseLemons * self.lemonCost + self.purchaseIceCubes * self.iceCubeCost
+        if totalCost > self.dollars {
+            self.showAlertWithtext(message: "Not enough credits for all that, folk")
+        } else {
+            self.lemons += self.purchaseLemons
+            self.iceCubes += self.purchaseIceCubes
+            self.dollars -= totalCost
+            self.purchaseIceCubes = 0
+            self.purchaseLemons = 0
+        }
+    }
     
+    func showAlertWithtext(header: String = "Warning", message: String, style:UIAlertControllerStyle = UIAlertControllerStyle.Alert) {
+        var alert = UIAlertController(title: header, message: message, preferredStyle: style)
+        var action = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+        alert.addAction(action)
+        self.presentViewController(alert, animated: true, completion:nil)
+    }
+
+    
+    //Start day action
     @IBAction func startDay(sender: UIButton) {
+        if self.mixIceCubes > self.iceCubes {
+            self.showAlertWithtext(message: "Not enough ice cubes in stock")
+            return
+        }
+        
+        if self.mixLemons > self.lemons {
+            self.showAlertWithtext(message: "Not enough lemons in stock")
+            return
+        }
+        
+        //use products, AKA, substract them from stock
+        self.iceCubes -= self.mixIceCubes
+        self.lemons -= self.mixLemons
+        self.mixLemons = 0
+        self.mixIceCubes = 0
+        
+        //do the maths, win or lose
     }
     
     
